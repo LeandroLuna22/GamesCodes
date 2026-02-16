@@ -7,7 +7,7 @@ export class Player {
         this.width = 64;   // tamanho do player no canvas
         this.height = 64;
 
-        this.speed = 5;
+        this.speed = 6;
         this.velocityY = 0;
         this.velocityX = 0;
         this.gravity = 0.6;
@@ -18,7 +18,7 @@ export class Player {
         this.frameX = 0;
         this.frameY = 0;
         this.frameTimer = 0;
-        this.frameInterval = 8;
+        this.frameInterval = 6;
 
         this.isOnGround = false;
         this.isHit = false;
@@ -28,7 +28,7 @@ export class Player {
 
         // Sprite sheet única
         this.spriteImage = new Image();
-        this.spriteImage.src = "/img/spritesheet1.png"; // coloque o caminho correto
+        this.spriteImage.src = character.sprite; // pega o sprite do personagem escolhido
 
         this.frameWidth = 64;  // largura de cada frame na sprite sheet
         this.frameHeight = 64; // altura de cada frame

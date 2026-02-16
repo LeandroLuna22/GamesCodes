@@ -53,15 +53,10 @@ function gameLoop() {
     player.update(canvas.height);
 
     // Limite horizontal do mapa
-    if (player.x < 0) {
-        player.x = 0;
-    }
+    if (player.x < 0) player.x = 0;
+    if (player.x + player.width > currentLevel.length) player.x = currentLevel.length - player.width;
 
-    if (player.x + player.width > currentLevel.length) {
-        player.x = currentLevel.length - player.width;
-    }
-
-
+    // Atualiza câmera
     if (player.x > canvas.width / 2) {
         cameraX = player.x - canvas.width / 2;
     }
@@ -73,17 +68,26 @@ function gameLoop() {
     ctx.fillStyle = "brown";
     ctx.fillRect(0, canvas.height - 20, currentLevel.length, 20);
 
+    // desenhar player
     player.draw(ctx);
 
+    // DESENHAR OBSTÁCULOS
+    obstacles.forEach(obs => {
+        obs.draw(ctx);
+
+        if (player.collides(obs) && !player.invulnerable) {
+            loseLife(obs);
+        }
+    });
+
+    // DEPOIS INIMIGOS
     enemies.forEach(enemy => {
         enemy.update();
         enemy.draw(ctx);
-        if (player.collides(enemy)) loseLife();
-    });
 
-    obstacles.forEach(obs => {
-        obs.draw(ctx);
-        if (player.collides(obs)) loseLife();
+        if (player.collides(enemy) && !player.invulnerable) {
+            loseLife(enemy);
+        }
     });
 
     // ITEM FINAL DA FASE (Portal)
@@ -101,8 +105,10 @@ function gameLoop() {
 
     ctx.restore();
 
+    // continuar o loop
     requestAnimationFrame(gameLoop);
 }
+
 
 function nextLevel() {
     currentLevelIndex++;
@@ -119,17 +125,18 @@ function nextLevel() {
     updateHUD();
 }
 
-function loseLife() {
+function loseLife(source) {
     if (player.invulnerable) return;
 
     lives--;
     updateHUD();
-    player.takeHit();
+    player.takeHit(source);
 
     if (lives <= 0) {
         setTimeout(() => gameOver(), 500);
     }
 }
+
 
 function updateHUD() {
     livesDisplay.textContent = "Vidas: " + lives + " | Fase: " + (currentLevelIndex + 1);

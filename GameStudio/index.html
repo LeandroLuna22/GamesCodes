@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Game 2D Modular</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div id="startScreen" class="screen">
+    <h1>MEU GAME 2D</h1>
+    <p>Pressione qualquer tecla para começar</p>
+</div>
+
+<div id="characterScreen" class="screen hidden">
+    <h2>Escolha seu Personagem</h2>
+    <div id="characterList"></div>
+</div>
+
+<div id="hud" class="hidden">
+    <span id="livesDisplay">Vidas: 5</span>
+</div>
+
+<canvas id="gameCanvas" width="800" height="400" class="hidden"></canvas>
+
+<div id="gameOverScreen" class="screen hidden">
+    <h1>GAME OVER</h1>
+    <button onclick="restartGame()">Reiniciar</button>
+</div>
+
+<script type="module" src="js/main.js"></script>
+</body>
+</html>

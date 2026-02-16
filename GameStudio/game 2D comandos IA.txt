@@ -1,0 +1,25 @@
+criar game 2D;
+html, css e js;
+tela inicial com pressione qualquer tecla;
+tela de escolha de personagens;
+sistema totalmente dividido;
+arquivo js para personagens, fases, obstáculos, oponentes, tudo o mais dividido possível;
+quero o personagem andando na fase;
+quando o personagem é tocado ele cai onde foi atingido;
+sistema de 5 vidas;
+crie um contador de vidas;
+acabou as vidas tela de game over e restart;
+
+/game2d
+│── index.html
+│── css/
+│     └── style.css
+│── js/
+│     ├── main.js
+│     ├── game.js
+│     ├── player.js
+│     ├── characters.js
+│     ├── enemies.js
+│     ├── obstacles.js
+│     ├── levels.js
+│     └── ui.js
